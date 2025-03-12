@@ -70,7 +70,11 @@ def login(session: requests.Session, username: str, password: str):
         "doubleFactorLogin": 0,
         "independentId": 0,
     }
-    session.post("https://passport2.chaoxing.com/fanyalogin", data=_data)
+    res = session.post("https://passport2.chaoxing.com/fanyalogin", data=_data).json()
+    if not res['status']:
+        print(f"登陆失败，若账号密码错误，请删除config.json文件以重新输入账号密码\n{res['msg2']}")
+        exit(1)
+
     ck = requests.utils.dict_from_cookiejar(session.cookies)
     pass
 

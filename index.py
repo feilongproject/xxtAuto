@@ -2,12 +2,12 @@ import json
 import time
 import requests
 import API
-from util import decode_course_folder
+import util
 
 
 def main():
     print()
-    config = json.load(open("config.json"))
+    config = util.loadconfig()
     session = requests.Session()
     session.cookies = requests.utils.cookiejar_from_dict(config["cookies"])
     session.headers['User-Agent'] = \
@@ -18,10 +18,11 @@ def main():
         API.login(session, config["username"], config["password"])
         config['cookies'] = requests.utils.dict_from_cookiejar(session.cookies)
         open('config.json', 'w').write(json.dumps(config, indent=4))
+        classInfo = API.get_course_list(session)
     pass
 
     print("==========")
-    course_list = decode_course_folder(classInfo)
+    course_list = util.decode_course_folder(classInfo)
     for i, course in enumerate(course_list):
         print(f"{i}\t{course['classId']}\t{course['courseId']}\t{course['name']}")
     print("==========")
