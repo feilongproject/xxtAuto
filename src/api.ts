@@ -18,7 +18,7 @@ export async function getCourseList(session: Session) {
     });
 
     const data = await res.text();
-    console.log(data);
+    // console.log(data);
     return data;
 }
 
