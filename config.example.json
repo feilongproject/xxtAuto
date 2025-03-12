@@ -1,6 +1,9 @@
 {
     "username": "<USERNAME>",
     "password": "<PASSWORD>",
+    "classId": "",
+    "courseId": "",
+    "sleepTime": 0.5,
     "cookies": {
 
     }

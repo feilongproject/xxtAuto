@@ -101,7 +101,7 @@ def get_active_list(session: requests.Session, courseId: str, classId: str):
     res = session.get(
         f"https://mobilelearn.chaoxing.com/v2/apis/active/student/activelist?fid=0&courseId={courseId}&classId={classId}").json()
     if res['errorMsg']:
-        print(res['errorMsg'])
+        print(res['errorMsg'], end="")
         # time.sleep(1)
         return []
     data = [
